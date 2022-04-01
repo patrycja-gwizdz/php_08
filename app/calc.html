@@ -4,30 +4,30 @@
 
 {block name=content}
 
-<h2 class="content-head is-center">Kalkulator kredytowy</h2>
+	<!-- First Section -->
+	<section id="first" class="main special">
 
+	<div>
+         
+	<form action="{$app_url}/app/calc.php" method="post">
+		<label for="kwota">	Kwota: </label>
+		<input id="kwota" type="text" name="kwota" value="{$form['kwota']}" />
+		<br />
+		<label for="lata">Liczba lat: </label>
+		<input id="lata" type="text" name="lata"  value="{$form['lata']}"  />
+		<br />
+		<label for="oprocentowanie">Oprocentowanie: </label>
+		<input id="oprocentowanie" type="text" name="oprocentowanie"  value="{$form['oprocentowanie']}"   />
+		<br />
+		<br />
+		<input type="submit" value="Oblicz" />
+	</form>	
+	</div>
+							</section>
 
-<div class="pure-g">
-    <div class="l-box-lrg pure-u-1 pure-u-med-2-5">
-        <form class="pure-form pure-form-stacked" action="{$app_url}/app/calc.php" method="post">
-            <fieldset>
-
-                <label for="kwota"> Kwota: </label>
-                <input id="kwota" type="text" name="kwota" /><br />
-
-                <label for="lata">Liczba lat: </label>
-                <input id="lata" type="text" name="lata"  /><br />
-
-                <label for="oprocentowanie">Oprocentowanie: </label>
-                <input id="oprocentowanie" type="text" name="oprocentowanie" /><br />
-
-                <button type="submit" class="pure-button">Oblicz</button>
-            </fieldset>
-        </form>
-    </div>
-
-
-    <div class="l-box-lrg pure-u-1 pure-u-med-3-5">
+    <section id="cta" class="main  ">
+        
+        <div class="l-box-lrg pure-u-1 pure-u-med-3-5">
 
         {if isset($messages)}
         {if count($messages) > 0} 
@@ -50,7 +50,7 @@
         {/if}
 
     </div>
-</div>
+</section>
 {/block}
 
 

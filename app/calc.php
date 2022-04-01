@@ -49,7 +49,7 @@ function process(&$form,&$infos,&$msgs,&$result){
 	$form['oprocentowanie'] = floatval($form['oprocentowanie']);
 	
 	//wykonanie operacji
-	$result = (($kwota / (12 * $lata)) * ($oprocentowanie / 100 )) + ($kwota / (12 * $lata));
+	$result = (($form['kwota'] / (12 * $form['lata'])) * ($form['oprocentowanie'] / 100 )) + ($form['kwota'] / (12 * $form['lata']));
 	$result = round ($result, 2);
 }
 
