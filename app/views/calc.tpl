@@ -1,10 +1,11 @@
-{extends file="templates/main.html"}
-{* przy zdefiniowanych folderach nie trzeba już podawać pełnej ścieżki *}
-
-{block name=footer}przykładowa tresć stopki wpisana do szablonu głównego z szablonu kalkulatora{/block}
+{extends file="main.tpl"}
 
 {block name=content}
-
+    
+<div class="major">
+	<a href="{$conf->action_url}logout"  class="button primary small">wyloguj</a>
+	<span style="float:right;">Użytkownik: {$user->login}, Rola: {$user->role}</span>
+</div>
 	<!-- First Section -->
 	<section id="first" class="main special">
 
@@ -30,38 +31,14 @@
         
         <div class="l-box-lrg pure-u-1 pure-u-med-3-5">
 
-{* wyświeltenie listy błędów, jeśli istnieją *}
-{if $msgs->isError()}
-	<h4>Wystąpiły błędy: </h4>
-	<ol class="err">
-	{foreach $msgs->getErrors() as $err}
-	{strip}
-		<li>{$err}</li>
-	{/strip}
-	{/foreach}
-	</ol>
-{/if}
 
+{include file='messages.tpl'}
 
         {if isset($res->result)}
-        <h4>Miesięczna rata</h4>
-        <p class="res">
-            {$res->result} złotych
-        </p>
+        <div class="messages inf">
+                Miesięczna rata: {$res->result} złotych
+        </div>
         {/if}
-        
-        {* wyświeltenie listy informacji, jeśli istnieją *}
-{if $msgs->isInfo()}
-	<h4>Informacje: </h4>
-	<ol class="inf">
-	{foreach $msgs->getInfos() as $inf}
-	{strip}
-		<li>{$inf}</li>
-	{/strip}
-	{/foreach}
-	</ol>
-{/if}
-
     </div>
 </section>
 {/block}

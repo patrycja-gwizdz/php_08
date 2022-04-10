@@ -5,8 +5,9 @@
 		<title> Kalkulator kredytowy</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="{$conf->app_url}/assets/css/main.css" />
+		<noscript><link rel="{$conf->app_url}/assets/css/noscript.css" /></noscript>
+              
 	</head>
 	<body class="is-preload">
 
@@ -16,7 +17,7 @@
 				<!-- Header -->
 					<header id="header" class="alt">
 					
-						<span class="logo"><img src="{(_APP_ROOT)}/images/logo.svg" alt="" /></span>
+						<span class="logo"><img src="{$conf->app_url}/images/logo1.svg" style="width:6em;"alt="" /></span>
 						<h1> PHP </h1>
 						<p>Języki programowania dynamicznych stron internetowych<br />
 						Patrycja Gwiżdż
@@ -25,50 +26,35 @@
 			<!-- Nav -->
 					<nav id="nav">
 						<ul>
-							<li><a href="#intro" class="active"> Informacje </a></li>
-							<li><a href="#first">Kalulator</a></li>
-							<li><a href="#cta">Wynik</a></li>
+							<li><a href="#intro" class="active"> Kalkulator </a></li>
+							<li><a href="#first"> Wynik </a></li>
+							<li><a href="#cta"> Informacje </a></li>
 						</ul>
 					</nav>
 
 				<!-- Main -->
 					<div id="main">
 					<!-- Introduction -->
-							<section id="intro" class="main">
+							<section id="intro" class="main ">
 								<div class="spotlight">
 									<div class="content">
 										<header class="major">
 											<h2>Kalkulator kredytowy</h2>
 										</header>
+                                                                            {block name=content} kontent .... {/block}
 										<p> Jeśli chcesz się dowiedzieć, ile wynosi miesięczna rata kredytu, na który chcesz się zdecydować, jesteś we właściwym miejscu. Wystraczy, że podasz kwotę kredytu, liczbę lat przez które bedziesz spłacać kredyt i oprocentowanie.
 										</p>
 										
 									</div>
-									<span class="image"><img src="{(_APP_ROOT)}/images/kalkulator2.svg" alt="" /></span>
+									<span class="image"><img src="{$conf->app_url}/images/kalkulator2.svg" alt="" /></span>
 									
 								</div>
 							</section>
 				
 
-								<!-- First Section -->
-	<section id="first" class="main special">
-								Kalkulator kredytowy
-	<div>
-	<form action="<?php print(_APP_URL);?>/app/calc_kredyt.php" method="get">
-		<label for="id_kwota">	Kwota: </label>
-		<input id="id_kwota" type="text" name="kwota" />
-		<br />
-		<label for="id_lata">Liczba lat: </label>
-		<input id="id_lata" type="text" name="lata"  />
-		<br />
-		<label for="id_oprocentowanie">Oprocentowanie: </label>
-		<input id="id_oprocentowanie" type="text" name="oprocentowanie"  />
-		<br />
-		<br />
-		<input type="submit" value="Oblicz" />
-	</form>	
-	</div>
-							</section>
+	
+ 
+ 
 <!-- Get Started -->
 							<section id="cta" class="main special">
 	
@@ -81,7 +67,7 @@
 					<footer id="footer">
 						<section>
 							<h2> Języki programowania dynamicznych stron internetowych</h2>
-							<p> Zadanie 4</p>
+							<p> Zadanie 7</p>
 							
 						</section>
 						<section>
@@ -91,23 +77,27 @@
 								<dt>Grupa</dt>
 								<dd>PAW2</dd>
 								<dt>Email</dt>
-								<dd>gwizdzpatrycja@o2.pl</dd>
+                                                                <dd><a href="mailto: gwizdzpatrycja@o2.pl">gwizdzpatrycja@o2.pl</a></dd>
 							</dl>
-							
+							<ul class="icons">
+								
+								<li><a href="https://github.com/patrycja-gwizdz" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+							</ul>
 						</section>
 						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 					</footer>
+						
 
 			</div>
 
 		<!-- Scripts -->
-			<script src="{(_APP_ROOT)}/assets/js/jquery.min.js"></script>
-			<script src="{(_APP_ROOT)}/assets/js/jquery.scrollex.min.js"></script>
-			<script src="{(_APP_ROOT)}/assets/js/jquery.scrolly.min.js"></script>
-			<script src="{(_APP_ROOT)}/assets/js/browser.min.js"></script>
-			<script src="{(_APP_ROOT)}/assets/js/breakpoints.min.js"></script>
-			<script src="{(_APP_ROOT)}/assets/js/util.js"></script>
-			<script src="{(_APP_ROOT)}/assets/js/main.js"></script>
+			<script src="{$conf->app_url}/assets/js/jquery.min.js"></script>
+			<script src="{$conf->app_url}/assets/js/jquery.scrollex.min.js"></script>
+			<script src="{$conf->app_url}/assets/js/jquery.scrolly.min.js"></script>
+			<script src="{$conf->app_url}/assets/js/browser.min.js"></script>
+			<script src="{$conf->app_url}/assets/js/breakpoints.min.js"></script>
+			<script src="{$conf->app_url}/assets/js/util.js"></script>
+			<script src="{$conf->app_url}/assets/js/main.js"></script>
 
 	</body>
 </html>

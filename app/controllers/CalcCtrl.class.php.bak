@@ -6,20 +6,32 @@ use app\transfer\CalcResult;
 
 class CalcCtrl {
 
-	private $form;   
-	private $result; 
+	private $form;   //dane formularza (do obliczeń i dla widoku)
+	private $result; //inne dane dla widoku
 
+	/** 
+	 * Konstruktor - inicjalizacja właściwości
+	 */
 	public function __construct(){
+		//stworzenie potrzebnych obiektów
 		$this->form = new CalcForm();
 		$this->result = new CalcResult();
 	}
 	
+	
+	/** 
+	 * Pobranie parametrów
+	 */
 	public function getParams(){
 		$this->form->kwota = getFromRequest('kwota');
 		$this->form->lata = getFromRequest('lata');
 		$this->form->oprocentowanie = getFromRequest('oprocentowanie');
 	}
 	
+	/** 
+	 * Walidacja parametrów
+	 * @return true jeśli brak błedów, false w przeciwnym wypadku 
+	 */
 	public function validate() {
 		// sprawdzenie, czy parametry zostały przekazane
 		if (! (isset ( $this->form->kwota ) && isset ( $this->form->lata ) && isset ( $this->form->oprocentowanie ))) {
@@ -56,8 +68,8 @@ class CalcCtrl {
 			if   ($this->form->kwota<=0){
 				getMessages()->addError('Kwota nie może wynosić zero');
 			}
-                        if   ($this->form->lata<=0){
-                                getMessages()->addError('Liczba lat nie może wynosić zero');
+            if   ($this->form->lata<=0){
+                 getMessages()->addError('Liczba lat nie może wynosić zero');
                                                 }
 			if  ($this->form->oprocentowanie<=0) {
 				getMessages()->addError('Oprocentowanie nie może wynosić zero');
@@ -70,16 +82,16 @@ class CalcCtrl {
 	/** 
 	 * Pobranie wartości, walidacja, obliczenie i wyświetlenie
 	 */
-		public function action_calcCompute(){
+	public function process(){
 
-		$this->getParams();
+		$this->getparams();
 		
 		if ($this->validate()) {
 				
 			//konwersja parametrów na int
 			$this->form->kwota = intval($this->form->kwota);
 			$this->form->lata = intval($this->form->lata);
-                        $this->form->oprocentowanie = intval($this->form->oprocentowanie);
+			$this->form->oprocentowanie = intval($this->form->oprocentowanie);
 			getMessages()->addInfo('Parametry poprawne.');
 				
 			//wykonanie operacji
@@ -91,24 +103,23 @@ class CalcCtrl {
 		$this->generateView();
 	}
 	
-	public function action_calcShow(){
-		getMessages()->addInfo('Witaj w kalkulatorze');
-		$this->generateView();
-	}
 	
-
-       public function generateView(){
-
-		getSmarty()->assign('user',unserialize($_SESSION['user']));
-				
-		getSmarty()->assign('page_title','Kalkulator kredytowy - role');
-
+	
+	/**
+	 * Wygenerowanie widoku
+	*/ 
+	public function generateView(){
+		getSmarty()->assign('page_title','Zadanie 6a');
+		getSmarty()->assign('page_description','Aplikacja z jednym "punktem wejścia". Zmiana w postaci nowej struktury foderów, skryptu inicjalizacji oraz pomocniczych funkcji.');
+		getSmarty()->assign('page_header','Kontroler główny');
+					
 		getSmarty()->assign('form',$this->form);
 		getSmarty()->assign('res',$this->result);
-
-                        getSmarty()->display('calc.tpl');
-                }
-        }
+		
+		getSmarty()->display('calc.html'); // już nie podajemy pełnej ścieżki - foldery widoków są zdefiniowane przy ładowaniu Smarty
+	}
+	
+}
 
 
 
