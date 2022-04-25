@@ -67,7 +67,7 @@
 					<footer id="footer">
 						<section>
 							<h2> Języki programowania dynamicznych stron internetowych</h2>
-							<p> Zadanie 7</p>
+							<p> Zadanie 8</p>
 							
 						</section>
 						<section>

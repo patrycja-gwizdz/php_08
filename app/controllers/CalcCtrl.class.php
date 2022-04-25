@@ -86,6 +86,42 @@ class CalcCtrl {
 			$this->result->result =((($this->form->kwota) / (12 *  $this->form->lata)) * ($this->form->oprocentowanie / 100)) + ($this->form->kwota / (12 *$this->form->lata));
 			$this->result->result  = round ($this->result->result, 2);
 			getMessages()->addInfo('Wykonano obliczenia.');
+                        
+                        try{
+                            $database = new \Medoo\Medoo([
+                            'type' => 'mysql',
+                            'host' => 'localhost',
+                            'database' => 'kalkulator',
+                            'username' => 'root',
+                            'password' => '',
+
+                            // [optional]
+                            'charset' => 'utf8',
+                            'collation' => 'utf8_polish_ci',
+                            'port' => 3306,
+                            
+                            'option' => [
+                                   \PDO::ATTR_CASE => \PDO::CASE_NATURAL
+                            ],
+
+                            'command' => [
+                                    'SET SQL_MODE=ANSI_QUOTES'
+                            ]
+                    ]);
+                            $database->insert("kredyt", [
+                            "kwota"  =>$this->form->kwota,
+                            "lata" =>$this->form->lata, 
+                            "oprocentowanie" =>$this->form->oprocentowanie,
+                            "wynik" =>$this->result->result
+                                 
+                            
+                                    
+                                    
+                           ]);        
+                        } catch (\PDOException $ex) {
+                            getMessages()->addError("Błąd bazy dancych".$ex ->getMessage());
+                        }
+                        
 		}
 		
 		$this->generateView();
